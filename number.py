@@ -1,6 +1,6 @@
 import pymysql
-import os.path
-from random import randrange
+import os
+import random
 
 class Number():
     """docstring for ."""
@@ -59,7 +59,6 @@ class Number():
     def get_random_movie(self):
         is_in_range = True
         BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-        #db_path = os.path.join(BASE_DIR, 'static\movieInfo.db')
         db_path = os.path.join(BASE_DIR, 'static\moviesSmall.db')
         my_db_host = 'mysql.dannywagstaff.com'
         user_name = 'dwagstaff24'
@@ -84,7 +83,7 @@ class Number():
         list_length = len(movie_list)
         random_index = 0
         if list_length > 0:
-            random_index = randrange(0, list_length)
+            random_index = random.randrange(0, list_length)
             return movie_list[random_index], list_length
         else:
             return None, 0
@@ -108,14 +107,13 @@ class Number():
         list_length = len(actor_list)
         random_index = 0
         if list_length > 0:
-            random_index = randrange(0, list_length)
+            random_index = random.randrange(0, list_length)
         return actor_list[random_index]
 
     def check_for_actors(self):
         if self.decimal == None:
             self.decimal = self.convert_to_decimal()
         BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-        #db_path = os.path.join(BASE_DIR, 'static\movieInfo.db')
         db_path = os.path.join(BASE_DIR, 'static\moviesSmall.db')
         my_db_host = 'mysql.dannywagstaff.com'
         user_name = 'dwagstaff24'
@@ -135,7 +133,7 @@ class Number():
         list_length = len(actor_list)
         actor1_title_list = []
         if list_length > 0:
-            actor1 = actor_list[randrange(0, list_length)]
+            actor1 = actor_list[random.randrange(0, list_length)]
             title_ids = actor1[2].split(',')
             #actor1[2] = []
             for title_id in title_ids:
@@ -164,7 +162,7 @@ class Number():
         list_length = len(actor_list)
         actor2_title_list = []
         if list_length > 0:
-            actor2 = actor_list[randrange(0, list_length)]
+            actor2 = actor_list[random.randrange(0, list_length)]
             #print('titleIds, type=', actor2[1], type(actor2[1]))
             title_ids = actor2[2].split(',')
             for title_id in title_ids:
