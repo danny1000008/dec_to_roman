@@ -1,0 +1,41 @@
+<html>
+  <head><title>Roman Numeral Converter</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',
+      filename='style.css') }}">
+      <script src="{{ url_for('static', filename='validate.js') }}"></script>
+      <script>function getYear() {
+        var today = new Date();
+        document.getElementById("thisYear").innerHTML = today.getFullYear();
+        return today.getFullYear();
+      }
+      </script>
+      </head>
+  <body class="main">
+    <div class="center">
+      <header>
+        <h1>Roman Numeral Converter</h1>
+        <h2>Choose a starting value type</h2>
+    </header>
+    <main>
+      <form id="mainForm" method="POST" onsubmit="return validateForm()" action="{{ url_for('result')}}">
+        <input type="radio" name="numType" id="decimal" value="decimal" checked onchange="clickRadioButton()"> Decimal<br>
+        <input type="radio" name="numType" id="roman" value="roman" onchange="clickRadioButton()"> Roman Numeral<br>
+        <br>
+        Starting value (<span id="startValueTip">must be a whole number between 1 and 4999</span>):
+        <input type="text" name="startValue" id="startValue" placeholder="ex: 1950">
+        <input type="submit" value="Convert">
+        <br><em>Hint: try a value between 1888 and <span id="thisYear">
+          <script>getYear()</script></span> for some movie trivia from IMDB.com!</em>
+      </form>
+    </main>
+    <br><br><br><br><br>
+    <footer>
+      <h2>Helpful Links</h2>
+      <p><a href="https://en.wikipedia.org/wiki/Roman_numerals" target="_blank">
+        Roman numerals</a></p>
+      <p><a href="https://en.wikipedia.org/wiki/Natural_number" target="_blank">
+        Whole numbers</a></p>
+    </footer>
+  </div>
+  </body>
+</html>

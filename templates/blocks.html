@@ -1,0 +1,39 @@
+{# {% extends 'result.html' %} #}
+
+{% block movie %}
+  <p>In {{startValue}},<a href="https://www.imdb.com/title/{{movie[0]}}" target="_blank">
+  {{movie[1]}}</a> was released, which was classified as belonging to genre(s)
+  <em>{{movie[2]}}</em>.</p>
+{% endblock %}
+
+{% block actor1(actor1, actor1Titles) %}
+  <h3>Births</h3>
+  <p><a href="https://www.imdb.com/name/{{actor1[0]}}"
+    target="_blank">{{actor1[1]}}</a> was born in {{startValue}}.
+  {% if actor1Titles[0] is not none %}
+    {{actor1[1]}} is known for titles such as
+    <a href="https://www.imdb.com/title/{{actor1Titles[0][0]}}" target="_blank">
+    {{actor1Titles[0][1]}}</a>
+    {% if actor1Titles|length > 1 and not actor1Titles[1] is none %}
+      and <a href="https://www.imdb.com/title/{{actor1Titles[1][0]}}" target="_blank">
+      {{actor1Titles[1][1]}}</a>
+    {% endif %}
+  .</p>
+  {% endif %}
+{% endblock %}
+
+{% block actor2 %}
+  <h3>Deaths</h3>
+  <p><a href="https://www.imdb.com/name/{{actor2[0]}}" target="_blank">
+  {{actor2[1]}}</a> died in {{startValue}}.
+  {% if not actor2Titles[0] is none %}
+    {{actor2[1]}} is known for titles such as
+    <a href="https://www.imdb.com/title/{{actor2Titles[0][0]}}" target="_blank">
+      {{actor2Titles[0][1]}}</a>
+    {% if actor2Titles|length > 1 and not actor2Titles[1] is none %}
+      and <a href="https://www.imdb.com/title/{{actor2Titles[1][0]}}" target="_blank">
+        {{actor2Titles[1][1]}}</a>
+    {% endif %}
+    .</p>
+  {% endif %}
+{% endblock %}
