@@ -1,7 +1,7 @@
 #python3
 #from flask import Flask, render_template, request
 import flask
-from datetime import date
+import datetime
 import number
 
 app = flask.Flask(__name__)
@@ -37,7 +37,7 @@ def result():
             check_dec_to_roman = check_dec_to_roman, movie = movie_info,
             movieCount = movies_that_year, actor1 = actor1,
             actor1Titles = actor1_title_list, actor2 = actor2,
-            actor2Titles = actor2_title_list, thisYear = date.today().year)
+            actor2Titles = actor2_title_list, thisYear = datetime.date.today().year)
 
 def main():
     dec_num = Number(1950)
