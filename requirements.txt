@@ -1,7 +1,4 @@
-flask.Flask
-flask.render_template
-flask.request
-flask.url_for
+flask
 datetime.date
 pymysql
 os.path

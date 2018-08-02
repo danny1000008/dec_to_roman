@@ -1,18 +1,19 @@
 #python3
-from flask import Flask, render_template, request, url_for
+#from flask import Flask, render_template, request
+import flask
 from datetime import date
 import number
 
-app = Flask(__name__)
+app = flask.Flask(__name__)
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return flask.render_template('index.html')
 
 @app.route('/result', methods=['POST'])
 def result():
-    start_type = request.form['numType']
-    start_value = request.form['startValue']
+    start_type = flask.request.form['numType']
+    start_value = flask.request.form['startValue']
     user_number = number.Number(start_value, start_type)
     end_value = ''
     is_roman_valid = None
@@ -31,7 +32,7 @@ def result():
     print('movieInfo=', movie_info)
     print('actorInfo=', actor1, actor2, actor1_title_list, actor2_title_list)
     #this_year = year(today())
-    return render_template('result.html', startValue = start_value,
+    return flask.render_template('result.html', startValue = start_value,
             endValue = end_value, is_roman_valid = is_roman_valid,
             check_dec_to_roman = check_dec_to_roman, movie = movie_info,
             movieCount = movies_that_year, actor1 = actor1,
