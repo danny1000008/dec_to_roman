@@ -1,5 +1,4 @@
 flask
 datetime
 pymysql
-os
 random
