@@ -23,8 +23,8 @@ function validateForm() {
     }
   } else { // formValue == roman
     let re = /[^IVXLCMD]+/;
-    if (re.test(initialValue)) {
-      alert("Enter an roman numeral");
+    if (re.test(initialValue.toUpperCase())) {
+      alert("Enter an roman numeral (make sure to use only upper case letters)");
       return false;
     } else {
       return true;

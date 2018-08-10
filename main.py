@@ -13,7 +13,7 @@ def index():
 @app.route('/result', methods=['POST'])
 def result():
     start_type = flask.request.form['numType']
-    start_value = flask.request.form['startValue']
+    start_value = flask.request.form['startValue'].upper()
     user_number = number.Number(start_value, start_type)
     end_value = ''
     is_roman_valid = None
