@@ -1,4 +1,3 @@
-{# {% import 'blocks.html' as blocks with context %} #}
 <html>
   <head><title>Roman Numeral Converter</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static',
@@ -14,61 +13,48 @@
           Converted value: <input type="text" id="endValue" value="{{endValue}}">
         </span>
       </div>
-      {% if is_roman_valid is not none and is_roman_valid == false %}
-        <div id="romanFail">
-          <p>Invalid roman numeral entered. You entered <span id="emphasize">
-            {{ startValue }}</span>, which was converted to the decimal number
-            <span id="emphasize">{{ endValue }}</span>.</p>
-            <p>Did you perhaps mean <span id="emphasize">{{ check_dec_to_roman }}
-            </span>?</p>
-        </div>
-        {% set movie  = none %}
-        {% set actor1  = none %}
-        {% set actor2  = none %}
+      {% if movie is defined and movie is not none %}
+        <h3>Here's some random movie trivia from IMDB.com!</h3>
+        <h3>Movies</h3>
+        <p>We found <em>{{movieCount}}</em> movies released in {{startValue}} in the database . For example, the movie
+        <em><a href="https://www.imdb.com/title/{{movie[0]}}" target="_blank">
+          {{movie[1]}}</a></em>, which was classified as belonging to genre(s)
+          <em>{{movie[2]}}</em>.</p>
+          <hr class="center width80">
       {% endif %}
-      {% if not (movie is none and actor1 is none and actor2 is none) %}
-        <h3>You chose a number from "the movie era" (1888 - {{thisYear}}).</h3>
-        <h4>Here's some year <span class="bold">{{startValue}}</span> random movie trivia from IMDB.com!</h4>
-        {% if movie is not none %}
-          <p>In {{startValue}},<a href="https://www.imdb.com/title/{{movie[0]}}" target="_blank">
-            {{movie[1]}}</a> was released, which was classified as belonging to genre(s)
-            <em>{{movie[2]}}</em>.</p>
-        {% endif %}
-
-        {% if actor1 is not none %}
-          <h3>Births</h3>
-          <p><a href="https://www.imdb.com/name/{{actor1[0]}}"
-            target="_blank">{{actor1[1]}}</a> was born in {{startValue}}.
-          {% if actor1Titles[0] is not none %}
-            {{actor1[1]}} is known for titles such as
-            <a href="https://www.imdb.com/title/{{actor1Titles[0][0]}}" target="_blank">
-            {{actor1Titles[0][1]}}</a>
-            {% if actor1Titles|length > 1 and not actor1Titles[1] is none %}
-              and <a href="https://www.imdb.com/title/{{actor1Titles[1][0]}}" target="_blank">
-              {{actor1Titles[1][1]}}</a>
-            {% endif %}
-          .</p>
+      {% if actor1 is defined and actor1 is not none %}
+        <h3>Births</h3>
+        <p><a href="https://www.imdb.com/name/{{actor1[0]}}"
+          target="_blank">{{actor1[1]}}</a> was born in {{startValue}}.
+        {% if actor1[3]|length > 0 %}
+          {{actor1[1]}} is known for titles such as
+          <a href="https://www.imdb.com/title/{{actor1[3][0][0]}}" target="_blank">
+          {{actor1[3][0][1][0]}}.</a>
+          {% if actor1[3]|length > 1 %}
+            and <a href="https://www.imdb.com/title/{{actor1[3][1][0]}}" target="_blank">
+              {{actor1[3][1][1][0]}}.</a>
           {% endif %}
-        {% endif %}
-
-        {% if actor2 is not none %}
-          <h3>Deaths</h3>
-          <p><a href="https://www.imdb.com/name/{{actor2[0]}}" target="_blank">
-          {{actor2[1]}}</a> died in {{startValue}}.
-          {% if not actor2Titles[0] is none %}
-            {{actor2[1]}} is known for titles such as
-            <a href="https://www.imdb.com/title/{{actor2Titles[0][0]}}" target="_blank">
-              {{actor2Titles[0][1]}}</a>
-            {% if actor2Titles|length > 1 and not actor2Titles[1] is none %}
-              and <a href="https://www.imdb.com/title/{{actor2Titles[1][0]}}" target="_blank">
-                {{actor2Titles[1][1]}}</a>
-            {% endif %}
-            .</p>
-          {% endif %}
+          </p><hr class="center width80">
         {% endif %}
       {% endif %}
-      <br><br>
+      {% if actor2 is defined and actor2 is not none %}
+        <h3>Deaths</h3>
+        <p><a href="https://www.imdb.com/name/{{actor2[0]}}" target="_blank">
+        {{actor2[1]}}</a> died in {{startValue}}.
+        {% if actor2[3]|length > 0 %}
+          {{actor2[1]}} is known for titles such as
+          <a href="https://www.imdb.com/title/{{actor2[3][0][0]}}" target="_blank">
+          {{actor2[3][0][1][0]}}.</a>
+          {% if actor2[3]|length > 1 %}
+            and <a href="https://www.imdb.com/title/{{actor2[3][1][0]}}" target="_blank">
+              {{actor2[3][1][1][0]}}.</a>
+          {% endif %}
+          </p><hr class="center width80">
+        {% endif %}.</p>
+      {% endif %}
+
       <form id="back" action="/">
+        <br><br>
         <input type="submit" value="Go back">
       </form>
     </div>
